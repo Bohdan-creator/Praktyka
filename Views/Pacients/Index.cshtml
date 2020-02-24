@@ -1,0 +1,78 @@
+﻿
+@model IEnumerable<WebApplication12.ViewModels.PacientDetailsVm>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Add Pacient", "RegisterPacient", "Account")
+</p>
+
+@using (Html.BeginForm("Index","Pacients",FormMethod.Get))
+{
+    @Html.TextBox("searching") <input class="btn btn-success" type="submit" value="Index" />
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>    
+            Surname
+        </th>
+        <th>
+            CreationDate
+        </th>
+        <th>
+            DietDurationDays
+        </th>
+        <th>
+            CurrentDietName
+        </th>
+        <th>
+            ConsultationCount
+        </th>
+        <th>
+            TargetWeight
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SurName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DietDurationDays)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsultationCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetWeight)
+            </td>
+
+
+
+
+            <td>
+               
+                @Html.ActionLink("Details", "Details",new{id = item.Id }) |
+            </td>
+        </tr>
+    }
+
+</table>

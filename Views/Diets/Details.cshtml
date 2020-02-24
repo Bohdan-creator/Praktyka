@@ -1,0 +1,52 @@
+﻿@model WebApplication12.ViewModels.DietDetailsVm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Dieta :  @Model.Name</h2>
+
+<button class="btn btn-success col-lg-1">@Html.ActionLink("CreateMeal", "CreateMeal", new { id = Model.DietId })</button>
+
+<button class="btn btn-danger col-lg-1" style="margin-left:20px">@Html.ActionLink("AddMeal", "AddMeal", new { id = Model.DietId })</button>
+@Html.HiddenFor(model => model.DietId)
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Data Create
+            </th>
+            <th>
+                Type meal
+            </th>
+            <th>
+                List of inredients
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Meals)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataAdd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeMeals)
+                </td>
+
+
+
+            </tr>
+        }
+
+    </table>
+</div>
+

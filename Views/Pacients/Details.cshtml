@@ -1,0 +1,125 @@
+﻿
+@model WebApplication12.ViewModels.PacientDetailsVm
+
+@{
+    ViewBag.Title = "Karta Pacjenta";
+}
+
+<h2>Karta Pacjenta : @Model.Name @Model.SurName</h2>
+<h4>Dieta : @Model.DietName@Html.ActionLink(HttpUtility.HtmlDecode("&#9998;"), "EditPacient", new { id = Model.Id })</h4>
+<div>
+
+    <div class="container">
+
+        <div class="col-lg-2">
+            <table class="table-condensed" id="t_draggable1">
+                <thead>
+                    <tr>
+                        <th>Color</th>
+                        <th>Meals</th>
+                    </tr>
+                </thead>
+                <tbody class="t_sortable">
+                    @foreach (var item in Model.Meals)
+                    {
+                        <tr>
+
+                            <td class="one">color</td>
+                            <td class="ui-widget-content">@item.Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4">
+
+            <table class="table-bordered" id="t_draggable2">
+                <tr>
+                    <th>Time</th>
+                    <th>Time for launch</th>
+                    <th>Kolacja</th>
+                </tr>
+                <tbody class="t_sortable">
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr class="one">
+                        <td ></td>
+                    </tr>
+                    <tr>
+                        <td class="timepicker"><input /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class=" col-lg-6">
+        <h1>Karta pacjenta : @Model.Name @Model.SurName</h1>
+        <h3>Dieta : @Model.DietName</h3>
+        <p>Waga przy rozpoczeciu : @Model.StartWeight</p>
+        <p>Waga docelowa : @Model.TargetWeight</p>  <p>Wzrost : @Model.Height</p>
+
+        <p>Tryb zycia : @Model.LifeType</p>
+
+
+        <p>Nie lubi : @Model.Unlike</p>
+        <p>Alergia : @Model.Alergic</p>
+        <p>Przeciwskazania : @Model.EatNo</p>
+
+
+        <p>Liczba wizyt : @Model.ConsultationCount</p>
+
+
+        <p>Email : <a>@Model.Email</a></p>
+
+
+
+    </div>
+
+
+        <style>
+            #draggable {
+                width: 10px;
+                height: 10px;
+                padding: 0.5em;
+            }
+        </style>
+
+
+
+    </div>
+
+
+
+@Scripts.Render("~/Scripts/jquery-3.3.1.min.js")
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(document).ready(function () {
+        var $tabs = $('#t_draggable2')
+        $("tbody.t_sortable").sortable({
+            connectWith: ".t_sortable"
+             
+        });
+   
+    var $tab_items = $tabs.droppable({
+       
+        drop: function (event, ui) {
+            //$('input.timepicker').timepicker({
+            //    timeFormat: 'h:mm p',
+            //    interval: 60,
+            //    minTime: '10',
+            //    maxTime: '6:00pm',
+            //    defaultTime: '11',
+            //    startTime: '10:00',
+            //    dynamic: false,
+            //    dropdown: true,
+            //    scrollbar: true
+            //});
+            return false;
+        }
+        });
+
+
+    });
+    
+</script>
